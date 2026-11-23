@@ -33,4 +33,4 @@ disable-model-invocation: true
 - AI에게 항상 만점을 받는 항목: "일관성이 있다", "직관적이다". 숫자나 화면 요소로 바꿉니다.
 - 디자이너만 알 수 있는 취향 항목: 남겨도 되지만 담당을 "사람"으로 둡니다.
 
-끝나면 오후 루프 시작 방법을 안내합니다: 터미널에서 `claude --agent director` 로 다시 들어오거나, 지금 대화에서 `.claude/agents/director.md 의 역할로 루프를 시작해줘` 라고 말하기.
+끝나면 루프 시작 방법을 안내합니다: 새 세션을 열어 같은 폴더를 고르고 `.claude/agents/director.md 를 읽고 그 역할로 루프를 시작해줘` 라고 말하기. 터미널을 쓴다면 `claude --agent director`.

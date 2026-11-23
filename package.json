@@ -1,13 +1,15 @@
 {
   "name": "harness-workshop-kit",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "description": "UX/UI 디자이너를 위한 하네스 엔지니어링 실습 스타터 키트",
   "scripts": {
     "doctor": "node scripts/doctor.mjs",
     "shot": "node scripts/shot.mjs",
-    "measure": "node scripts/measure.mjs"
+    "measure": "node scripts/measure.mjs",
+    "design-check": "node scripts/design-check.mjs",
+    "site-tokens": "node scripts/site-tokens.mjs"
   },
   "dependencies": {
     "playwright-core": "^1.49.0"

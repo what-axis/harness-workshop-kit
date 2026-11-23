@@ -12,6 +12,7 @@
 - [서브에이전트](https://code.claude.com/docs/en/sub-agents)
 - [스킬](https://code.claude.com/docs/en/skills)
 - [훅](https://code.claude.com/docs/en/hooks)
+- [Claude 데스크톱 앱의 Code 탭](https://code.claude.com/docs/en/desktop) · 세션, 권한 모드, `/compact`
 
 ## DESIGN.md
 
@@ -30,8 +31,10 @@
 ## 피그마와 디자인 도구
 
 - [Figma MCP 서버](https://developers.figma.com/docs/figma-mcp-server/) · 읽기와 캔버스 쓰기, 설치 방법
+- [Write to canvas](https://developers.figma.com/docs/figma-mcp-server/write-to-canvas) · Figma. 캔버스 쓰기는 원격 서버에서만 되고 베타입니다.
 - [Config 2026 요약](https://www.figma.com/blog/config-2026-recap/) · Figma
 - [Introducing Claude Design](https://www.anthropic.com/news/claude-design-anthropic-labs) · Anthropic Labs, 2026-04-17
+- [Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design) · Anthropic 도움말. 내보내기 형식 목록(zip, PDF, PPTX, Google Slides, HTML, Claude Code 로 넘기기). 피그마는 목록에 없습니다.
 - [Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude) · Anthropic 도움말. 독립 사이트는 2026-12-14 에 닫히고 Claude 안의 기능으로 옮겨 갑니다.
 - [Arena · Code Arena WebDev 순위표](https://arena.ai/leaderboard/code/webdev) · 웹 화면을 만드는 과제에서 모델을 사람들의 투표로 비교
 

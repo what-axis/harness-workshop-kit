@@ -4,7 +4,10 @@
       "Bash(node scripts/shot.mjs*)",
       "Bash(node scripts/measure.mjs*)",
       "Bash(node scripts/doctor.mjs*)",
-      "Bash(node scripts/design-check.mjs*)"
+      "Bash(node scripts/design-check.mjs*)",
+      "Bash(node scripts/site-tokens.mjs*)",
+      "Bash(npm install*)",
+      "Bash(npm run doctor*)"
     ]
   }
 }

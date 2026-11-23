@@ -62,7 +62,7 @@ designer 와 reviewer 두 에이전트만 써서 진행해줘. designer 가 화�
 - 장점: 빠진 화면까지 잡습니다. 멈추는 규칙이 있어 끝없이 돌지 않습니다
 - 한계: 시간이 더 들고 사용량이 많습니다. 기준(채점표)이 부실하면 열심히 틀립니다
 
-실행: `claude --agent director` 로 접속한 뒤 "루프를 시작해줘."
+실행: 새 세션에서 ".claude/agents/director.md 를 읽고 그 역할로 루프를 시작해줘." (터미널이라면 `claude --agent director` 로 접속한 뒤 "루프를 시작해줘.")
 
 ## 무엇을 고를까
 

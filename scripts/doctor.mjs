@@ -19,12 +19,14 @@ console.log('\n디자인 하네스 스타터 키트 점검\n');
 const major = Number(process.versions.node.split('.')[0]);
 major >= 18 ? ok(`Node.js ${process.versions.node}`) : no(`Node.js ${process.versions.node}`, 'Node.js LTS(18 이상)를 설치하세요: https://nodejs.org');
 
-// 2. Claude Code
+// 2. Claude Code (터미널의 claude 명령, 또는 Claude 앱의 Code 탭)
+const inClaude = !!(process.env.CLAUDECODE || process.env.CLAUDE_CODE_ENTRYPOINT);
 try {
   const v = execSync('claude --version', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
   ok(`Claude Code ${v}`);
 } catch {
-  no('Claude Code 를 찾지 못함', 'SETUP.md 의 2단계를 다시 진행하세요. 설치 직후라면 터미널을 닫았다 다시 여세요.');
+  if (inClaude) ok('Claude Code (Claude 앱의 Code 탭에서 실행 중)');
+  else console.log('  [안내] 터미널용 claude 명령은 없습니다. Claude 앱의 Code 탭으로 진행한다면 괜찮습니다.');
 }
 
 // 3. 키트 파일
@@ -54,7 +56,7 @@ if (!fs.existsSync(path.join(ROOT, 'node_modules', 'playwright-core'))) {
 
 console.log('');
 if (failed === 0) {
-  console.log('준비 완료입니다. 당일에 뵙겠습니다.\n');
+  console.log('준비 완료입니다.\n');
 } else {
   console.log(`확인이 필요한 항목이 ${failed}개 있습니다. 화살표(->) 안내를 따라 해 보고, 막히면 이 화면을 찍어 보내 주세요.\n`);
 }

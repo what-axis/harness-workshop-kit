@@ -9,8 +9,8 @@ AI가 만든 화면을 디자이너의 기준으로 채점하고, 빠진 화면�
 
 ## 처음이라면
 
-1. [SETUP.md](SETUP.md) 를 따라 설치합니다. (15분 안팎)
-2. 터미널에서 이 폴더로 들어와 `claude` 를 실행합니다.
+1. [SETUP.md](SETUP.md) 를 따라 준비합니다. Claude 앱의 Code 탭에서 진행합니다.
+2. Claude 앱의 Code 탭에서 이 폴더를 엽니다. (터미널이라면 이 폴더에서 `claude`)
 3. 아래 한 줄을 붙여 넣습니다.
 
 ```
@@ -29,7 +29,7 @@ AI가 만든 화면을 디자이너의 기준으로 채점하고, 빠진 화면�
 | 2 | Discover: 인사이트, 내 판단 기준, 추가 질문 | `/insights` `/interview-me` | `01_discover/` |
 | 3 | Define: 브리프와 검증할 가설 | `/brief` | `02_define/brief.md` |
 | 4 | Develop: AI가 읽는 디자인 규칙, 담당자, 1차 화면 | `/design-check` `designer 에이전트로 ...` `/shot` | `DESIGN.md` `03_develop/screens/` |
-| 5 | Deliver: 채점표, 채점, QA, 통과할 때까지 반복 | `/rubric` `claude --agent director` | `04_deliver/` |
+| 5 | Deliver: 채점표, 채점, QA, 통과할 때까지 반복 | `/rubric`, 디렉터 루프 | `04_deliver/` |
 | 6 | 정리: 1차와 최종 비교, 내 업무로 옮기기 | `/harness-card` | `04_deliver/my-harness-card.md` |
 
 모든 문장은 [PROMPTS.md](PROMPTS.md) 에 교시 순서대로 있습니다.
@@ -44,9 +44,9 @@ DESIGN.md            AI가 읽는 디자인 규칙 (샘플: Studio Mono)
 01_discover/ ~ 04_deliver/   단계별 작업 폴더
 04_deliver/rubric.md         반쯤 채워진 채점표
 04_deliver/qa-checklist.md   빠지기 쉬운 화면 체크리스트
-scripts/             스크린샷, 기계 측정, DESIGN.md 진단, 점검 도구
+scripts/             스크린샷, 기계 측정, DESIGN.md 진단, 배포된 화면에서 값 읽기, 점검 도구
 examples/            1차 화면, 최종 화면, 따라잡기 파일, 리포트 예시, 레퍼런스 DESIGN.md
-templates/           내 업무 하네스 카드, 새 담당자 틀
+templates/           내 업무 하네스 카드, 새 담당자 틀, 새 스킬 틀
 docs/                가이드 문서, 공개 DESIGN.md 84개 진단 결과
 PROMPTS.md           교시별 프롬프트 모음
 REFERENCES.md        더 볼 자료
