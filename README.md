@@ -1,41 +1,102 @@
-# UX/UI 디자이너를 위한 하네스 엔지니어링 — 스타터 키트
+# 디자인 하네스 스타터 키트
 
-2026-10-30 데브멘토 워크숍 실습 환경입니다. 이 폴더 하나에 오늘 쓰는 모든 재료가 들어 있습니다.
+**AI가 만든 UX·UI 시안, 실무에 바로 쓰는 법** 워크숍 실습 자료입니다.
+AI가 만든 화면을 디자이너의 기준으로 채점하고, 빠진 화면을 찾고, 통과할 때까지 고치게 하는 체계(하네스)를 하루 동안 직접 만들어 봅니다.
 
-## 받는 법
+![1차 화면과 최종 화면](docs/preview.png)
 
-```bash
-git clone https://github.com/what-axis/harness-workshop-kit
-cd harness-workshop-kit
+같은 기획서, 같은 AI입니다. 왼쪽은 한 번 시켜서 나온 화면(48점), 오른쪽은 채점과 QA를 세 번 돌린 화면(96점)입니다.
+
+## 처음이라면
+
+1. [SETUP.md](SETUP.md) 를 따라 설치합니다. (15분 안팎)
+2. 터미널에서 이 폴더로 들어와 `claude` 를 실행합니다.
+3. 아래 한 줄을 붙여 넣습니다.
+
+```
+이 폴더가 어떤 키트인지 세 줄로 설명하고, node scripts/doctor.mjs 를 실행해서 준비가 됐는지 확인해줘.
 ```
 
-git이 안 되면: 저장소 페이지에서 초록색 **Code → Download ZIP** 을 눌러 받고 압축을 풀어도 똑같습니다.
+"준비 완료입니다"가 보이면 끝입니다.
 
-## 준비 확인 (3단계 — 행사 전날까지 완료)
+## 하루의 흐름
 
-1. 터미널에서 `claude` 실행 → 로그인 화면 없이 대화창이 뜨는가
-2. **이 폴더 안에서** `claude` 실행 후 `/agents` 입력 → designer, reviewer, qa, director 네 개가 보이는가
-3. 대화창에 `sample/점검용_샘플화면.html 스크린샷 찍어줘` 입력 → `shots/` 폴더에 PNG가 생기는가
+여섯 교시로 진행합니다. 익숙한 더블 다이아몬드 네 단계에 AI 담당자와 통과 기준을 하나씩 붙입니다.
 
-3번이 안 되면 터미널에서 `npx playwright install chromium` 을 먼저 실행하세요. (자세한 해결법: 워크숍 안내 메일의 설치 가이드)
+| 교시 | 하는 일 | 치는 것 | 남는 파일 |
+|---|---|---|---|
+| 1 | 환경 점검과 강의: 에이전트 이해, 내 눈과 기계 비교 | `/measure examples/before` | 메모 세 줄 |
+| 2 | Discover: 인사이트, 내 판단 기준, 추가 질문 | `/insights` `/interview-me` | `01_discover/` |
+| 3 | Define: 브리프와 검증할 가설 | `/brief` | `02_define/brief.md` |
+| 4 | Develop: AI가 읽는 디자인 규칙, 담당자, 1차 화면 | `/design-check` `designer 에이전트로 ...` `/shot` | `DESIGN.md` `03_develop/screens/` |
+| 5 | Deliver: 채점표, 채점, QA, 통과할 때까지 반복 | `/rubric` `claude --agent director` | `04_deliver/` |
+| 6 | 정리: 1차와 최종 비교, 내 업무로 옮기기 | `/harness-card` | `04_deliver/my-harness-card.md` |
 
-## 폴더 안내
+모든 문장은 [PROMPTS.md](PROMPTS.md) 에 교시 순서대로 있습니다.
 
-| 경로 | 내용 |
-|---|---|
-| `CLAUDE.md` | 이 프로젝트의 규칙 — Claude Code가 자동으로 읽습니다 |
-| `.claude/agents/` | 에이전트 4종: designer(화면 생성) · reviewer(루브릭 채점) · qa(케이스·누락 도출) · director(수정 지시·정지 판단) |
-| `.claude/skills/` | 스킬 2종: screenshot(화면 캡처) · design-loop(디렉터 루프 실행) |
-| `brief/실습용_기획서.md` | 오늘의 실습 프로젝트: 사내 회의실 예약 서비스 '모두의회의실' |
-| `research/` | 사용자 인터뷰 스크립트 3인분 + "나를 인터뷰해" 프롬프트 |
-| `design/DESIGN.md` | 샘플 디자인 시스템 (디자이너 에이전트가 읽는 명세) |
-| `rubric/루브릭.md` | 반쯤 채워진 채점표 — 오후에 여러분의 기준으로 완성합니다 |
-| `qa/QA_체크리스트.md` | 상태·엣지·누락 화면 점검 목록 |
-| `hooks-example/` | 자동 채점 훅 시연 자료 (기본 비활성) |
-| `screens/` `reports/` `shots/` `outputs/` | 실습 중 생성되는 화면 / 리포트 / 스크린샷 / 기타 산출물 |
+## 들어 있는 것
 
-## 오늘의 흐름
+```
+.claude/agents/      AI 담당자 4명: designer, reviewer, qa, director
+.claude/skills/      슬래시로 부르는 절차 10개
+DESIGN.md            AI가 읽는 디자인 규칙 (샘플: Studio Mono)
+00_inputs/           실습 재료: 기획서, 인터뷰 기록 3건
+01_discover/ ~ 04_deliver/   단계별 작업 폴더
+04_deliver/rubric.md         반쯤 채워진 채점표
+04_deliver/qa-checklist.md   빠지기 쉬운 화면 체크리스트
+scripts/             스크린샷, 기계 측정, DESIGN.md 진단, 점검 도구
+examples/            1차 화면, 최종 화면, 따라잡기 파일, 리포트 예시, 레퍼런스 DESIGN.md
+templates/           내 업무 하네스 카드, 새 담당자 틀
+docs/                가이드 문서, 공개 DESIGN.md 84개 진단 결과
+PROMPTS.md           교시별 프롬프트 모음
+REFERENCES.md        더 볼 자료
+```
 
-인터뷰(Discover) → 브리프·가설(Define) → 1차 화면(Develop, 검증 없이) → 채점·QA·수정 반복(Deliver) → 내 업무 하네스 카드
+가이드 문서:
 
-각 단계의 상세 안내는 워크숍 화면에 공유되는 실습 안내를 따라가면 됩니다.
+- [docs/design-md-guide.md](docs/design-md-guide.md) · DESIGN.md 작성법, 무료와 유료 레퍼런스 파일 분석
+- [docs/agent-structures.md](docs/agent-structures.md) · 에이전트란 무엇이고 어떤 구조로 짤까
+- [docs/figma-track.md](docs/figma-track.md) · 피그마를 연결할 때와 연결하지 않을 때
+- [docs/hook.md](docs/hook.md) · 저장할 때마다 자동으로 검사하기
+- [docs/reference-84-result.csv](docs/reference-84-result.csv) · 공개 DESIGN.md 84개를 진단한 결과
+
+## 네 명의 담당자
+
+| 담당자 | 하는 일 | 하지 않는 일 |
+|---|---|---|
+| designer | DESIGN.md 와 브리프를 읽고 화면을 만들고 고친다 | 채점 |
+| reviewer | 채점표로 점수를 매기고 근거와 수정 지시를 남긴다 | 화면 수정 |
+| qa | 빈 상태, 오류, 품절처럼 **없는 화면**을 찾는다 | 화면 수정 |
+| director | 셋을 순서대로 움직이고, 기록하고, 사람이 판단할 지점에서 멈춘다 | 직접 만들기, 직접 채점 |
+
+핵심은 **만든 담당자가 채점하지 않는다**는 것입니다.
+
+## 누가 무엇을 확인하나
+
+| 확인하는 주체 | 보는 것 | 도구 |
+|---|---|---|
+| 기계 | 토큰 밖 컬러, 명도 대비, 터치 영역, 글자 크기 | `/measure` |
+| AI 리뷰어 | 위계, 컴포넌트 규격, 피드백, 흐름 | reviewer 에이전트 + 채점표 |
+| AI QA | 빠진 화면과 예외 상태, 막다른 길 | qa 에이전트 + 체크리스트 |
+| 사람 | 내 판단 기준, 최종 승인, 기준 자체를 고칠지 | 갤러리(`03_develop/shots/gallery.html`) |
+
+## 막혔을 때
+
+- 한 단계가 안 풀리면 [examples/checkpoints](examples/checkpoints/README.md) 의 따라잡기 파일을 복사해 다음 단계부터 이어 갑니다.
+- 스크린샷이나 측정이 실행되지 않아도 실습은 됩니다. HTML 파일을 브라우저로 직접 열어 보고, 리뷰어는 코드를 읽어 채점합니다.
+- `node scripts/doctor.mjs` 가 무엇이 빠졌는지 알려 줍니다.
+
+## 워크숍이 끝난 뒤
+
+회사에서 그대로 쓰려면 세 가지만 바꾸면 됩니다.
+
+1. `DESIGN.md` 를 우리 디자인 시스템으로 (`/design-md`)
+2. `04_deliver/rubric.md` 6~10번을 우리 팀 기준으로 (`/rubric`)
+3. `04_deliver/qa-checklist.md` 5번에 우리 서비스만의 예외 추가
+
+저장할 때마다 자동으로 검사를 거는 방법은 [docs/hook.md](docs/hook.md) 에 있습니다.
+
+## 만든 사람
+
+이해든 · AX is 대표, 숭실대학교 겸임교수
+실습용 서비스 Studio Mono 는 가상의 브랜드입니다.

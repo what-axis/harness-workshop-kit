@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<title>2. 옵션 선택 시트</title>
+<link rel="stylesheet" href="_base.css">
+</head>
+<body>
+<header class="top"><button class="icon-btn" aria-label="뒤로"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="icon-btn" aria-label="장바구니"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></button></header>
+<div class="hero "><span class="tag">내일 도착</span><div data-illust><div class="bottle"><i class="cap"></i><i class="neck"></i><i class="bod"></i></div></div></div>
+<div class="scrim"></div>
+<section class="sheet" role="dialog" aria-label="옵션 선택">
+  <div class="grab"></div>
+  <h3>색상 <b>세이지</b></h3>
+  <div class="swatches" role="group" aria-label="색상">
+    <button class="swatch" aria-pressed="true" aria-label="세이지"><span data-illust style="background:#9DB097"></span></button>
+    <button class="swatch" aria-pressed="false" aria-label="샌드"><span data-illust style="background:#D3C3A5"></span></button>
+    <button class="swatch" aria-pressed="false" aria-label="차콜"><span data-illust style="background:#2B2E2A"></span></button>
+  </div>
+  <h3>용량</h3>
+  <div class="chips">
+    <button class="chip" aria-pressed="false">350ml</button>
+    <button class="chip" aria-pressed="true">500ml</button>
+    <button class="chip" aria-disabled="true">750ml <span class="mini">재입고 알림</span></button>
+  </div>
+  <div class="row" style="margin-top:16px">
+    <h3 style="margin:0">수량</h3>
+    <div class="stepper"><button aria-label="수량 줄이기">−</button><span class="num">1</span><button aria-label="수량 늘리기">+</button></div>
+  </div>
+  <p class="note">오늘 18시 전 주문 시 <b>내일 도착</b></p>
+  <button class="btn primary" style="width:100%">담기 <span class="pill num">₩38,000</span></button>
+</section>
+</body>
+</html>

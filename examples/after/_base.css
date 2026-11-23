@@ -1,0 +1,141 @@
+/* Studio Mono 화면 공통 스타일
+   DESIGN.md 의 토큰과 컴포넌트 규격을 그대로 옮긴 파일입니다.
+   화면 HTML 은 이 파일의 변수와 클래스만 씁니다. 색을 직접 적지 않습니다. */
+:root {
+  --ink: #141414;
+  --paper: #F7F5F0;
+  --surface: #FFFFFF;
+  --sand: #EDE9DF;
+  --line: #E2DED4;
+  --muted: #6B665E;
+  --accent: #C8F03A;
+  --error: #D64A2F;
+  --r-card: 18px;
+  --r-pill: 999px;
+  --tap: 44px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); }
+body {
+  width: 390px; min-height: 844px; margin: 0 auto; position: relative; overflow-x: hidden;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", system-ui, sans-serif;
+  color: var(--ink); font-size: 14px; line-height: 1.5; letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* 상단 바 */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 54px 16px 8px; }
+.top .title { font-size: 16px; font-weight: 700; }
+.top .title small { font-weight: 500; color: var(--muted); font-size: 14px; margin-left: 4px; }
+.icon-btn { width: var(--tap); height: var(--tap); border-radius: 50%; background: var(--surface); border: 1px solid var(--line);
+  display: inline-flex; align-items: center; justify-content: center; position: relative; }
+.icon-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.badge { position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
+  background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 700; line-height: 18px; text-align: center; }
+
+/* 상품 이미지 */
+.hero { margin: 4px 16px 0; height: 300px; border-radius: 24px; background: var(--sand); position: relative;
+  display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero.small { height: 210px; }
+.tag { position: absolute; left: 14px; top: 14px; background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 700;
+  padding: 5px 10px; border-radius: var(--r-pill); }
+.bottle { display: flex; flex-direction: column; align-items: center; }
+.bottle i { display: block; }
+.bottle .cap { width: 46px; height: 26px; border-radius: 9px 9px 4px 4px; background: #2B2E2A; }
+.bottle .neck { width: 38px; height: 10px; background: #8FA389; }
+.bottle .bod { width: 88px; height: 168px; border-radius: 20px 20px 26px 26px; background: linear-gradient(100deg, #A9BBA3 0%, #9DB097 55%, #8A9E84 100%); position: relative; }
+.bottle .bod::after { content: ""; position: absolute; left: 14px; top: 18px; width: 9px; height: 96px; border-radius: 5px; background: rgba(255,255,255,.35); }
+.hero.small .bottle { transform: scale(.68); }
+
+/* 상품 정보 */
+.info { padding: 18px 20px 0; }
+.brand { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--muted); }
+.name { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.25; margin-top: 4px; }
+.price { margin-top: 8px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.price s { font-size: 14px; font-weight: 500; color: var(--muted); margin-left: 6px; }
+.meta { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 700; }
+
+/* 색상 견본: 버튼은 44, 안쪽 점은 상품 색(토큰 검사 제외) */
+.swatches { display: flex; gap: 2px; margin: 10px 0 0 -8px; }
+.swatch { width: var(--tap); height: var(--tap); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.swatch span { width: 28px; height: 28px; border-radius: 50%; display: block; }
+.swatch[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ink); }
+
+/* 버튼 */
+.cta-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 16px 28px; background: var(--paper); border-top: 1px solid var(--line); display: flex; gap: 8px; }
+.btn { flex: 1; height: 56px; border-radius: var(--r-pill); font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 20px; }
+.btn.primary { background: var(--ink); color: var(--surface); }
+.btn.primary .pill { background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 700; padding: 5px 12px; border-radius: var(--r-pill); }
+.btn.ghost { background: var(--surface); color: var(--ink); border: 1.5px solid var(--ink); }
+.btn.grow0 { flex: 0 0 auto; }
+.btn .check { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+.btn .check svg { width: 13px; height: 13px; stroke: var(--ink); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.btn[aria-busy="true"] { background: var(--muted); color: var(--surface); }
+
+/* 바텀시트 */
+.scrim { position: absolute; inset: 0; background: rgba(20,20,20,.38); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); border-radius: 28px 28px 0 0; padding: 10px 20px 28px; }
+.sheet .grab { width: 40px; height: 4px; border-radius: 2px; background: var(--line); margin: 0 auto 14px; }
+.sheet h3 { font-size: 13px; font-weight: 700; color: var(--muted); display: flex; justify-content: space-between; margin-top: 14px; }
+.sheet h3 b { color: var(--ink); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.chip { min-height: var(--tap); padding: 0 16px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--surface);
+  font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip[aria-disabled="true"] { color: var(--muted); text-decoration: line-through; background: var(--paper); }
+.chip .mini { text-decoration: none; background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 700; padding: 1px 7px; border-radius: var(--r-pill); }
+.row { display: flex; align-items: center; justify-content: space-between; }
+.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: var(--r-pill); background: var(--surface); }
+.stepper button { width: var(--tap); height: var(--tap); font-size: 18px; font-weight: 600; }
+.stepper span { min-width: 24px; text-align: center; font-weight: 700; }
+.note { font-size: 13px; color: var(--muted); margin: 14px 0 12px; }
+.note b { color: var(--ink); }
+
+/* 토스트 */
+.toast { position: absolute; left: 16px; right: 16px; bottom: 112px; background: var(--ink); color: var(--surface); border-radius: var(--r-card);
+  padding: 10px 10px 10px 16px; display: flex; align-items: center; gap: 12px; }
+.toast .t { flex: 1; }
+.toast .t b { display: block; font-size: 14px; font-weight: 700; }
+.toast .t span { display: block; font-size: 12px; color: var(--line); }
+.toast button { height: var(--tap); padding: 0 14px; border-radius: var(--r-pill); background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 700; }
+
+/* 장바구니 */
+.card { background: var(--surface); border-radius: var(--r-card); border: 1px solid var(--line); padding: 14px; margin: 10px 16px 0; }
+.progress-label { font-size: 13px; color: var(--muted); }
+.progress-label b { color: var(--ink); }
+.progress { height: 6px; border-radius: 3px; background: var(--sand); margin-top: 8px; overflow: hidden; }
+.progress i { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+.item { display: flex; gap: 12px; align-items: center; }
+.thumb { width: 72px; height: 72px; border-radius: 14px; background: var(--sand); flex: none; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.thumb .bottle { transform: scale(.32); }
+.item .t { flex: 1; min-width: 0; }
+.item .t b { display: block; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+.item .t span { display: block; font-size: 13px; color: var(--muted); }
+.item .t .p { font-size: 15px; font-weight: 700; margin-top: 4px; color: var(--ink); }
+.sec { margin: 22px 20px 0; font-size: 13px; font-weight: 700; color: var(--muted); }
+.reco { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 16px 0; }
+.reco button { text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 10px; min-height: var(--tap); }
+.reco .ph { height: 64px; border-radius: 12px; background: var(--sand); margin-bottom: 8px; }
+.reco b { display: block; font-size: 13px; font-weight: 700; }
+.reco span { display: block; font-size: 13px; color: var(--muted); }
+.sum { flex: 1; }
+.sum span { display: block; font-size: 12px; color: var(--muted); }
+.sum b { display: block; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+
+/* 빈 상태, 알림 */
+.empty { text-align: center; padding: 40px 32px 0; }
+.empty .ico { width: 84px; height: 84px; border-radius: 26px; background: var(--surface); border: 1px solid var(--line); margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; }
+.empty .ico svg { width: 38px; height: 38px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.empty h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.empty p { font-size: 14px; color: var(--muted); margin-top: 6px; }
+.empty .btn { margin-top: 20px; width: 100%; }
+.alert { margin: 14px 16px 0; background: var(--surface); border: 1.5px solid var(--error); border-radius: var(--r-card); padding: 14px; }
+.alert h4 { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.alert h4 i { width: 20px; height: 20px; border-radius: 50%; background: var(--error); color: var(--surface); font-style: normal; font-size: 13px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center; }
+.alert h4 i svg { width: 14px; height: 14px; stroke: var(--surface); fill: none; stroke-width: 3; stroke-linecap: round; }
+.alert p { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.spinner { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid var(--line); border-top-color: var(--surface); }

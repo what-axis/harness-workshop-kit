@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/shot.mjs*)",
+      "Bash(node scripts/measure.mjs*)",
+      "Bash(node scripts/doctor.mjs*)",
+      "Bash(node scripts/design-check.mjs*)"
+    ]
+  }
+}

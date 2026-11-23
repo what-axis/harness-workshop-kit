@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>1. 상품 상세</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:390px;min-height:844px;margin:0 auto;background:#fff;font-family:Arial,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;color:#222;font-size:14px;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;padding:52px 16px 10px;border-bottom:1px solid #eee;font-weight:700}
+.top a{color:#3B82F6;font-size:12px;font-weight:400;text-decoration:none}
+.img{margin:14px 16px;height:190px;background:#E5E7EB;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#B0B0B0;font-size:11px}
+.pad{padding:0 16px}
+h1{font-size:16px}
+.stars{color:#FACC15;font-size:12px;margin-top:4px}.stars span{color:#B0B0B0;font-size:11px}
+.price{color:#3B82F6;font-size:18px;font-weight:700;margin-top:6px}
+.stock{color:#22C55E;font-size:11px;margin-top:4px}
+select{width:100%;height:38px;border:1px solid #D1D5DB;border-radius:6px;margin-top:10px;padding:0 10px;color:#B0B0B0;background:#fff;font-size:12px}
+.qty{display:flex;align-items:center;gap:8px;margin-top:10px;color:#B0B0B0;font-size:11px}
+.qty button{width:26px;height:26px;border:1px solid #D1D5DB;background:#fff;border-radius:4px}
+.btn{display:block;width:100%;height:40px;border-radius:6px;border:0;background:#3B82F6;color:#fff;font-weight:700;font-size:13px;margin-top:12px}
+.btn.line{background:#fff;color:#3B82F6;border:1px solid #3B82F6}
+.err{background:#FEE2E2;color:#EF4444;font-size:12px;padding:10px 12px;border-radius:6px;margin-top:10px}
+select.bad{border-color:#EF4444}
+.item{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid #eee}
+.th{width:56px;height:56px;background:#E5E7EB;border-radius:6px;flex:none}
+.item b{display:block;font-size:13px}.item span{display:block;font-size:11px;color:#B0B0B0}.item .p{color:#222;font-weight:700;font-size:12px}
+.item a{margin-left:auto;color:#EF4444;font-size:11px;align-self:center}
+.sum{display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid #eee;font-size:12px;color:#B0B0B0}.sum b{color:#222;font-size:14px}
+.tab{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:12px 0 26px;border-top:1px solid #eee;font-size:10px;color:#B0B0B0}.tab .on{color:#3B82F6}
+</style>
+</head>
+<body>
+<div class="top"><span>‹ 상품 상세</span><a href="#">장바구니</a></div>
+<div class="img">상품 이미지</div>
+<div class="pad">
+  <h1>스테인리스 텀블러 500ml</h1>
+  <div class="stars">★★★★☆ <span>4.0 (128)</span></div>
+  <div class="price">₩38,000</div>
+  <div class="stock">● 재고 있음</div>
+  
+  <select class=""><option>색상 선택</option></select>
+  <select><option>용량 선택</option></select>
+  <div class="qty">수량 <button>-</button> 1 <button>+</button></div>
+  <button class="btn">장바구니에 추가</button>
+  <button class="btn line">바로 구매</button>
+</div>
+</body>
+</html>
