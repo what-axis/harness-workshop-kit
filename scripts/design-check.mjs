@@ -3,6 +3,7 @@
 //   1층 겉모습  컬러, 타이포, 간격과 모서리, 컴포넌트 규격
 //   2층 행동    상태 규칙(빈·오류·처리 중·불가), 카피 톤
 //   3층 검증    숫자로 쓴 규칙, 이름 붙인 금지 사항, 글자색 대비, 버전 표기, 모호한 표현, 알려진 빈칸
+// 머리말(YAML)에 components 가 있으면 컴포넌트마다 적힌 글자색과 바탕색 조합을 실제로 잽니다.
 // 결과: 04_deliver/reports/design-check.md
 // 이 검사는 "문서에 적혀 있는가"만 봅니다. 규칙이 옳은지는 사람이 판단합니다.
 import fs from 'node:fs';
@@ -63,7 +64,46 @@ for (const t of colors.filter(isText)) for (const b of colors.filter(isBg)) {
   if (t.hex === b.hex) continue;
   pairs.push({ text: t.name, bg: b.name, ratio: ratio(t.hex, b.hex) });
 }
+
+// ---- 머리말(YAML)의 토큰과 컴포넌트 읽기: 들여쓰기 두 칸 기준의 단순한 구조만 다룹니다 ----
+const fmData = {};
+{
+  let key = null; let sub = null;
+  for (const line of front.split('\n')) {
+    if (!line.trim() || /^\s*#/.test(line)) continue;
+    let m;
+    if ((m = line.match(/^([\w-]+):\s*(.*)$/))) { key = m[1]; fmData[key] = m[2] ? m[2] : {}; sub = null; continue; }
+    if (!key || typeof fmData[key] !== 'object') continue;
+    if ((m = line.match(/^ {2}([\w-]+):\s*(.*)$/))) {
+      if (m[2] === '') { sub = m[1]; fmData[key][sub] = {}; } else { fmData[key][m[1]] = m[2].replace(/^"|"$/g, ''); sub = null; }
+      continue;
+    }
+    if (sub && (m = line.match(/^ {4}([\w-]+):\s*(.*)$/))) fmData[key][sub][m[1]] = m[2].replace(/^"|"$/g, '');
+  }
+}
+const fmColors = typeof fmData.colors === 'object' ? fmData.colors : {};
+const fmType = typeof fmData.typography === 'object' ? fmData.typography : {};
+const fmComps = typeof fmData.components === 'object' ? fmData.components : {};
+const tokenName = (v) => ((v || '').match(/\{[\w-]+\.([\w-]+)\}/) || [])[1];
+const colorOf = (v) => (/^#[0-9a-fA-F]{6}$/.test(v || '') ? v : fmColors[tokenName(v)]);
+// 바탕색이 적히지 않은 컴포넌트는 페이지 바탕 위에 놓인다고 가정합니다.
+const pageBg = ['canvas', 'paper', 'background', 'bg', 'surface'].find((k) => /^#[0-9a-fA-F]{6}$/.test(fmColors[k] || ''));
+const compPairs = [];
+for (const [name, c] of Object.entries(fmComps)) {
+  if (typeof c !== 'object' || !c.textColor) continue;
+  const fg = colorOf(c.textColor);
+  const bg = c.backgroundColor ? colorOf(c.backgroundColor) : fmColors[pageBg];
+  if (!/^#[0-9a-fA-F]{6}$/.test(fg || '') || !/^#[0-9a-fA-F]{6}$/.test(bg || '')) continue;
+  const ty = fmType[tokenName(c.typography)] || {};
+  const size = parseFloat(ty.fontSize) || 0; const weight = parseInt(ty.fontWeight, 10) || 400;
+  const large = size >= 24 || (size >= 18.66 && weight >= 700); // 큰 글자는 3:1 이 기준입니다
+  compPairs.push({ comp: name, text: tokenName(c.textColor) || fg, bg: c.backgroundColor ? tokenName(c.backgroundColor) || bg : `${pageBg} (가정)`, ratio: ratio(fg, bg), need: large ? 3 : 4.5, size: ty.fontSize || '' });
+}
+const failComp = compPairs.filter((p) => p.ratio < p.need);
 const failPairs = pairs.filter((p) => p.ratio < 4.5);
+// 머리말에서 읽은 참고 수치: 점수에는 넣지 않고 보고서에만 적습니다.
+const smallType = Object.entries(fmType).filter(([, v]) => typeof v === 'object' && parseFloat(v.fontSize) < 12).map(([k, v]) => `${k} ${v.fontSize}`);
+const lowTap = Object.entries(fmComps).filter(([, v]) => typeof v === 'object' && parseFloat(v.height || v.size) < 44).map(([k, v]) => `${k} ${v.height || v.size}`);
 
 // ---- 층별 점검 ----
 const stateSec = find(/상태|States?\b|State Rules/i);
@@ -76,7 +116,7 @@ const numericRules = (body.match(/\d+(\.\d+)?\s*:\s*1|\d+\s*(px|pt)\b|(높이|�
 const hasVersion = /버전|version|업데이트|updated|v\d+\.\d+|20\d\d[-.]\d{1,2}/i.test(text);
 
 // ---- 모호한 표현 찾기: 기계도 리뷰어도 예/아니오로 확인할 수 없는 말 ----
-const VAGUE = /깔끔|세련|적절|적당|자연스럽|직관적|모던|심플|고급스|예쁘|감각적|트렌디|조화롭|충분히|가능하면|되도록|보기 좋|\b(clean|modern|elegant|sleek|premium|beautiful|delightful|intuitive|appropriate|refined)\b/i;
+const VAGUE = /깔끔|세련|적절|적당|자연스럽|직관적|모던|심플|고급스|예쁘|감각적|트렌디|조화롭|충분히|가능하면|되도록|보기 좋|\b(clean|modern|elegant|sleek|premium|beautiful|delightful|intuitive|appropriate|refined|generous|subtle|roughly|barely)\b/i;
 const vague = [];
 {
   const all = text.split('\n');
@@ -118,7 +158,9 @@ const layers = [
   { name: '3층 검증', note: '기계와 리뷰어가 채점할 수 있게 만드는 층', checks: [
     ['숫자로 쓴 규칙 8개 이상', numericRules >= 8, `${numericRules}개`],
     ['금지 사항 3개 이상', dontItems.length >= 3, `${dontItems.length}개`],
-    ['글자색과 바탕색 대비 4.5:1', pairs.length > 0 && failPairs.length === 0, pairs.length === 0 ? '글자색·바탕색 역할을 찾지 못함' : `${pairs.length}쌍 중 미달 ${failPairs.length}쌍`],
+    ['글자색과 바탕색 대비 4.5:1', pairs.length + compPairs.length > 0 && failPairs.length + failComp.length === 0,
+      pairs.length + compPairs.length === 0 ? '글자색·바탕색 역할을 찾지 못함'
+        : [pairs.length ? `색 ${pairs.length}쌍 중 미달 ${failPairs.length}쌍` : '', compPairs.length ? `컴포넌트 ${compPairs.length}개 중 미달 ${failComp.length}개` : ''].filter(Boolean).join(', ')],
     ['버전 또는 날짜 표기', hasVersion, ''],
     ['모호한 표현 0곳', vague.length === 0, `${vague.length}곳`],
     ['알려진 빈칸을 적어 둠', !!gapSec, ''],
@@ -141,6 +183,18 @@ if (failPairs.length) {
   out.push('## 대비가 부족한 조합', '', '| 글자 | 바탕 | 대비 |', '|---|---|---|');
   for (const p of failPairs.sort((a, b) => a.ratio - b.ratio).slice(0, 12)) out.push(`| ${p.text} | ${p.bg} | ${p.ratio.toFixed(2)}:1 |`);
   out.push('', '글자로 쓰지 않는 색이라면 역할 칸에 "아이콘·테두리만"처럼 적어 두세요.', '');
+}
+if (failComp.length) {
+  out.push('## 대비가 부족한 컴포넌트', '', '머리말에 적힌 컴포넌트의 글자색과 바탕색을 그대로 잰 값입니다. 이 파일대로 만들면 이 대비가 나옵니다.', '', '| 컴포넌트 | 글자 | 바탕 | 글자 크기 | 대비 | 기준 |', '|---|---|---|---|---|---|');
+  for (const p of failComp.sort((a, b) => a.ratio - b.ratio).slice(0, 15)) out.push(`| ${p.comp} | ${p.text} | ${p.bg} | ${p.size || '?'} | ${p.ratio.toFixed(2)}:1 | ${p.need}:1 |`);
+  if (failComp.length > 15) out.push('', `외 ${failComp.length - 15}개`);
+  out.push('', '"(가정)"은 바탕색이 적혀 있지 않아 페이지 바탕 위에 놓인다고 보고 잰 것입니다.', '');
+}
+if (smallType.length || lowTap.length) {
+  out.push('## 머리말에서 읽은 참고 수치', '', '점수에는 넣지 않았습니다. 기준으로 삼기 전에 사람이 정할 것입니다.', '');
+  if (smallType.length) out.push(`- 12px 미만 글자 토큰 ${smallType.length}개: ${smallType.join(', ')}`);
+  if (lowTap.length) out.push(`- 높이 44px 미만 컴포넌트 ${lowTap.length}개: ${lowTap.join(', ')}`);
+  out.push('');
 }
 if (vague.length) {
   out.push('## 확인할 수 없는 표현', '', '아래 문장은 지켰는지 예 / 아니오로 답하기 어렵습니다. 숫자, 조건, 금지 문장으로 바꿔 보세요.', '', '| 줄 | 구역 | 걸린 말 | 문장 |', '|---|---|---|---|');

@@ -1,6 +1,6 @@
 {
   "name": "harness-workshop-kit",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "description": "UX/UI 디자이너를 위한 하네스 엔지니어링 실습 스타터 키트",

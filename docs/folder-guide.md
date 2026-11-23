@@ -113,6 +113,7 @@ templates/skill-template.md 를 바탕으로 내 업무용 스킬을 .claude/ski
 | 기획서, PRD, 요구사항 | `00_inputs/` | 오늘 쓰는 `product-brief.md` 를 내 기획서로 바꿔도 되고, 파일을 하나 더 넣어도 됩니다 |
 | 사용자 인터뷰, 설문, 고객 문의 | `00_inputs/interviews/` | 한 사람이 한 파일. 텍스트나 마크다운이 가장 좋습니다 |
 | 회사 디자인 가이드, 토큰 표 | `DESIGN.md` 를 고치거나 `/design-md` 로 변환 | 가이드 문서나 피그마 변수를 붙여 넣으면 세 층 구조로 바꿔 줍니다 |
+| 밖에서 받은 DESIGN.md (유료 분석, 레퍼런스) | `00_inputs/reference/` (폴더를 새로 만드세요) | 그대로 쓰지 않고 `/design-check` 로 잰 뒤 남길 값만 옮깁니다. `docs/case-paid-design-md.md` |
 | 기존 화면 (HTML) | `03_develop/screens/` | `번호-이름.html` 로 한 파일에 한 화면 상태 |
 | 기존 화면 (이미지, 피그마 캡처) | `00_inputs/screens/` (폴더를 새로 만드세요) | 레퍼런스로 읽게 합니다. 화면 파일로 취급하지 않습니다 |
 | 우리 팀 리뷰 지적, 체크리스트 | `04_deliver/rubric.md` 를 고치기 | 지적을 예, 아니오 문장으로 바꿔 항목에 넣습니다 |

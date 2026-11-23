@@ -56,6 +56,7 @@ REFERENCES.md        더 볼 자료
 
 - [docs/folder-guide.md](docs/folder-guide.md) · 폴더가 이렇게 생긴 이유, 스킬 만드는 법, 내 자료 넣는 곳
 - [docs/design-md-guide.md](docs/design-md-guide.md) · DESIGN.md 작성법, 무료와 유료 레퍼런스 파일 분석
+- [docs/case-paid-design-md.md](docs/case-paid-design-md.md) · 유료 DESIGN.md 를 직접 받아 진단한 사례, 받은 파일을 우리 기준으로 바꾸는 순서
 - [docs/agent-structures.md](docs/agent-structures.md) · 에이전트란 무엇이고 어떤 구조로 짤까
 - [docs/figma-track.md](docs/figma-track.md) · 피그마를 연결할 때와 연결하지 않을 때
 - [docs/hook.md](docs/hook.md) · 저장할 때마다 자동으로 검사하기

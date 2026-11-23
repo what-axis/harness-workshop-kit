@@ -3,3 +3,5 @@ node_modules/
 03_develop/shots/
 04_deliver/reports/measure.json
 .claude/settings.local.json
+# 밖에서 받은 DESIGN.md 는 저장소에 올리지 않습니다 (재배포 조건을 확인한 뒤에 올리세요)
+00_inputs/reference/

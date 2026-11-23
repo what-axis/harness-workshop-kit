@@ -18,7 +18,7 @@
 
 - [DESIGN.md 사양](https://github.com/google-labs-code/design.md) · Google Labs. 형식, 검사 도구.
 - [Stitch 의 DESIGN.md 형식 공개](https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/) · Google, 2026-04-21
-- [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) · 무료 DESIGN.md 모음(MIT). 둘러보는 사이트는 [getdesign.md](https://getdesign.md)
+- [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) · 무료 DESIGN.md 모음(MIT). 둘러보는 사이트는 [getdesign.md](https://getdesign.md). 내 사이트를 분석해 주는 유료 요청은 [getdesign.md/request](https://getdesign.md/request). 받아서 진단한 결과는 [docs/case-paid-design-md.md](docs/case-paid-design-md.md)
 - [Atlassian's DESIGN.md is here](https://www.atlassian.com/blog/how-we-build/atlassians-design-md-is-here-what-we-learned-testing-portable-design-context-in-practice) · Atlassian, 2026-06-15. DESIGN.md, MCP, 스킬을 같은 과제로 비교한 실험.
 - [How our agents build on-brand pages with design.md](https://vercel.com/blog/how-our-agents-build-on-brand-pages-with-design-md) · Vercel, 2026-08-31. 사람의 지적을 규칙과 검사로 바꾸는 평가 루프.
 
