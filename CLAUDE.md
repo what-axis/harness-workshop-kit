@@ -22,7 +22,7 @@ UX/UI 디자이너가 AI가 만든 화면을 **자기 기준으로 검증하고 
 ## 담당자(에이전트)와 절차(스킬)
 
 - 담당자: `designer`(만들기), `reviewer`(채점), `qa`(누락 찾기), `director`(루프 진행)
-- 절차: `/insights`, `/interview-me`, `/brief`, `/rubric`, `/shot`, `/measure`, `/harness-card`, `/design-md`
+- 절차: `/insights`, `/interview-me`, `/brief`, `/rubric`, `/shot`, `/measure`, `/design-check`, `/handoff`, `/harness-card`, `/design-md`
 
 ## 지켜야 할 규칙
 
