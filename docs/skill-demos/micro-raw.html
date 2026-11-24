@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>담김 피드백 · 스킬이 금지하는 값으로 만든 예</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#ECEAE4;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+p{font-size:13px;color:#4B556B;margin:0}
+
+.mx{--s:1;position:relative;width:236px;height:384px;flex:0 0 auto;border:1px solid #D9D5CA;border-radius:26px;overflow:hidden;background:#F7F5F0;color:#141414;font-size:13px;line-height:1.4;letter-spacing:-.01em}
+.mx *{box-sizing:border-box}
+.mx-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 10px;font-size:11px;font-weight:700;letter-spacing:.08em}
+.mx-cart{position:relative;font-weight:500;letter-spacing:0;font-size:12px;padding-right:20px}
+.mx-badge{position:absolute;right:0;top:-3px;min-width:17px;height:17px;border-radius:999px;background:#141414;color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.mx-img{margin:0 16px;height:112px;border-radius:18px;background:#EDE9DF;display:flex;align-items:center;justify-content:center}
+.mx-meta{padding:12px 16px 0}
+.mx-tag{display:inline-block;font-size:11px;font-weight:700;background:#C8F03A;padding:2px 8px;border-radius:999px}
+.mx-name{font-size:15px;font-weight:700;margin-top:7px}
+.mx-price{font-size:17px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.mx-price s{font-size:12px;font-weight:400;color:#6B665E;margin-left:6px}
+.mx-chips{display:flex;gap:6px;margin-top:9px}
+.mx-chip{font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid #E2DED4;background:#fff}
+.mx-chip.on{border-color:#141414;font-weight:700}
+.mx-cta{position:absolute;left:16px;right:16px;bottom:16px;height:46px;border:0;border-radius:14px;background:#141414;color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;overflow:hidden}
+.mx-l{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.mx-toast{position:absolute;left:16px;right:16px;bottom:72px;background:#141414;color:#fff;border-radius:14px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px}
+.mx-undo{background:none;border:0;color:#C8F03A;font:inherit;font-weight:700;cursor:pointer;padding:4px 2px}
+.mx.added .mx-cta{background:#C8F03A;color:#141414}
+
+.mx.raw .mx-cta,.mx.raw .mx-l,.mx.raw .mx-badge,.mx.raw .mx-toast{transition:all calc(500ms * var(--s)) ease-in}
+.mx.raw .mx-l.b{opacity:0}
+.mx.raw.added .mx-l.a{opacity:0}
+.mx.raw.added .mx-l.b{opacity:1}
+.mx.raw.added .mx-cta{height:56px}
+.mx.raw .mx-badge{transform:scale(0)}
+.mx.raw.added .mx-badge{transform:scale(1)}
+.mx.raw .mx-toast{transform:scale(0)}
+.mx.raw.added .mx-toast{animation:mxpop calc(600ms * var(--s)) ease-in both}
+@keyframes mxpop{0%{transform:scale(0)}60%{transform:scale(1.14)}80%{transform:scale(.93)}100%{transform:scale(1)}}
+.mx.raw .mx-cta:hover{transform:scale(1.05)}
+</style>
+</head>
+<body>
+<p>스킬이 금지하는 값으로 만든 예. 버튼을 눌러 보세요.</p>
+<div data-mxroot="">
+<div class="mx raw"><div class="mx-top"><span>STUDIO MONO</span><span class="mx-cart">장바구니<i class="mx-badge" style="font-style:normal">1</i></span></div><div class="mx-img"><svg width="46" height="82" viewBox="0 0 54 96" aria-hidden="true"><rect x="9" y="2" width="36" height="10" rx="4" fill="#141414"/><path d="M11 14h32l-4 76a6 6 0 0 1-6 5H21a6 6 0 0 1-6-5z" fill="#9DB1A0"/><rect x="14" y="34" width="26" height="20" rx="3" fill="#F7F5F0" opacity=".85"/></svg></div><div class="mx-meta"><span class="mx-tag">내일 도착</span><div class="mx-name">데일리 텀블러 500ml</div><div class="mx-price">₩38,000<s>₩42,000</s></div><div class="mx-chips"><span class="mx-chip on">세이지</span><span class="mx-chip">샌드</span><span class="mx-chip">차콜</span></div></div><div class="mx-toast"><span>담았어요 · 세이지 · 1개</span><button type="button" class="mx-undo">실행 취소</button></div><button type="button" class="mx-cta"><span class="mx-l a">장바구니 담기</span><span class="mx-l b">담았어요</span></button></div>
+</div>
+<script>
+(function(){
+  function setup(root, auto){
+    var mxs=[].slice.call(root.querySelectorAll('.mx')), timer=null, slow=1;
+    function set(mx,on){mx.classList.toggle('added',on);}
+    function tap(mx){var c=mx.querySelector('.mx-cta');c.classList.add('press');setTimeout(function(){c.classList.remove('press');set(mx,!mx.classList.contains('added'));},140);}
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    function play(){stop();mxs.forEach(function(m){set(m,false);});setTimeout(function(){mxs.forEach(tap);},350);timer=setInterval(function(){mxs.forEach(tap);},2400*slow);}
+    mxs.forEach(function(mx){
+      mx.querySelector('.mx-cta').addEventListener('click',function(){stop();set(mx,!mx.classList.contains('added'));});
+      mx.querySelector('.mx-undo').addEventListener('click',function(){stop();set(mx,false);});
+    });
+    var bp=root.querySelector('[data-mx="play"]'), bs=root.querySelector('[data-mx="slow"]');
+    if(bp)bp.addEventListener('click',function(){play();bp.blur();});
+    if(bs)bs.addEventListener('click',function(){slow=slow===1?4:1;bs.classList.toggle('on',slow===4);mxs.forEach(function(m){m.style.setProperty('--s',slow);});if(timer)play();bs.blur();});
+    if(auto==='slide'){var sec=root.closest('.slide');if(sec){new MutationObserver(function(){if(sec.classList.contains('active'))play();else{stop();mxs.forEach(function(m){set(m,false);});}}).observe(sec,{attributes:true,attributeFilter:['class']});}}
+    else if(auto){play();}
+  }
+  [].forEach.call(document.querySelectorAll('[data-mxroot]'),function(r){setup(r,r.getAttribute('data-mxroot'));});
+})();
+</script>
+</body>
+</html>

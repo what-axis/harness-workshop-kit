@@ -32,7 +32,7 @@ harness-workshop-kit/
 │   ├─ agents/        담당자 4명 (designer, reviewer, qa, director)
 │   ├─ skills/        절차 10개 (/brief, /rubric, /measure ...)
 │   └─ settings.json  허용해 둔 명령 목록
-├─ scripts/           숫자를 재는 도구 (measure, shot, design-check, doctor)
+├─ scripts/           숫자를 재는 도구 (measure, shot, design-check, motion-check, doctor)
 ├─ templates/         내 담당자, 내 하네스 카드를 만들 때 쓰는 틀
 ├─ examples/          완성 예시(before, after)와 단계별 따라잡기 파일
 └─ docs/              DESIGN.md 쓰는 법, 에이전트 구조, 피그마 연결, 훅

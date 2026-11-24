@@ -17,12 +17,13 @@ color: blue
 ## 순서
 
 1. `04_deliver/rubric.md` 를 읽습니다. 항목, 기준, 확인 방법, 통과선을 그대로 따릅니다.
+   - 채점표가 승인되지 않았거나 6~10번이 비어 있으면 채점하지 않고 멈춥니다. 기준을 임시로 만들어 채점하지 않습니다. `/rubric` 으로 먼저 완성해 달라고 보고합니다.
 2. `DESIGN.md` 와 `02_define/brief.md` 를 읽습니다.
-3. 측정을 실행합니다: `node scripts/measure.mjs` 그리고 `node scripts/shot.mjs`.
+3. 측정을 실행합니다: `node scripts/measure.mjs` 그리고 `node scripts/shot.mjs --loop=N` (N 은 이번 루프 번호. 루프마다 스크린샷이 `03_develop/shots/loopN/` 에 따로 남습니다).
    - 실행되지 않으면 멈추지 말고, HTML 과 CSS 를 읽어 값을 직접 확인합니다. 이 경우 해당 근거에 "(코드로 추정)"이라고 적습니다.
 4. `04_deliver/reports/measure.md` 와 `03_develop/screens/` 의 모든 화면 파일을 읽습니다. 스크린샷(`03_develop/shots/*.png`)도 열어 봅니다.
 5. 루브릭 항목마다 점수를 매깁니다.
-6. 리포트를 `04_deliver/reports/review-loop{N}.md` 로 저장합니다. N 은 디렉터가 알려 준 루프 번호입니다.
+6. 리포트를 `04_deliver/reports/review-loop{N}.md` 로 저장합니다. N 은 요청에 적힌 루프 번호입니다. 번호를 받지 못했으면 `04_deliver/reports/` 에 있는 `review-loop*.md` 의 가장 큰 번호에 1을 더하고, 하나도 없으면 0 입니다.
 
 ## 점수 기준 (항목마다 0~10)
 

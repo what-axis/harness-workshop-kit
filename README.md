@@ -44,7 +44,7 @@ DESIGN.md            AI가 읽는 디자인 규칙 (샘플: Studio Mono)
 01_discover/ ~ 04_deliver/   단계별 작업 폴더
 04_deliver/rubric.md         반쯤 채워진 채점표
 04_deliver/qa-checklist.md   빠지기 쉬운 화면 체크리스트
-scripts/             스크린샷, 기계 측정, DESIGN.md 진단, 배포된 화면에서 값 읽기, 점검 도구
+scripts/             스크린샷, 기계 측정, DESIGN.md 진단, 움직임 점검, 배포된 화면에서 값 읽기, 점검 도구
 examples/            1차 화면, 최종 화면, 따라잡기 파일, 리포트 예시, 레퍼런스 DESIGN.md
 templates/           내 업무 하네스 카드, 새 담당자 틀, 새 스킬 틀
 docs/                가이드 문서, 공개 DESIGN.md 84개 진단 결과
@@ -57,6 +57,7 @@ REFERENCES.md        더 볼 자료
 - [docs/folder-guide.md](docs/folder-guide.md) · 폴더가 이렇게 생긴 이유, 스킬 만드는 법, 내 자료 넣는 곳
 - [docs/design-md-guide.md](docs/design-md-guide.md) · DESIGN.md 작성법, 무료와 유료 레퍼런스 파일 분석
 - [docs/case-paid-design-md.md](docs/case-paid-design-md.md) · 유료 DESIGN.md 를 직접 받아 진단한 사례, 받은 파일을 우리 기준으로 바꾸는 순서
+- [docs/design-skills.md](docs/design-skills.md) · 시간이 남을 때: 디자이너가 참고할 스킬, 마이크로인터랙션과 모션 예시, 파일 최적화, 핸드오프
 - [docs/agent-structures.md](docs/agent-structures.md) · 에이전트란 무엇이고 어떤 구조로 짤까
 - [docs/figma-track.md](docs/figma-track.md) · 피그마를 연결할 때와 연결하지 않을 때
 - [docs/hook.md](docs/hook.md) · 저장할 때마다 자동으로 검사하기

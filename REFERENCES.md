@@ -48,6 +48,17 @@
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/) · 명도 대비 1.4.3, 터치 영역 2.5.8
 - [닐슨의 10가지 사용성 휴리스틱](https://www.nngroup.com/articles/ten-usability-heuristics/)
 
+## 디자이너가 참고할 스킬 (2026-11-24 확인)
+
+- [emilkowalski/skills](https://github.com/emilkowalski/skills) · 움직임을 넣을지부터 정하는 순서, 길이와 가속의 값, 금지 목록
+- [jakubkrehel/skills](https://github.com/jakubkrehel/skills) · 움직임, 모서리, 그림자, 아이콘, 글자, 문구의 정확한 값
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable) · 디자인 피드백 단어를 명령으로. 기계 검사 규칙 포함
+- [greensock/gsap-skills](https://github.com/greensock/gsap-skills) · GSAP 공식 스킬. 타임라인, 스크롤 연동
+- [remotion-dev/skills](https://github.com/remotion-dev/skills) · [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) · 코드로 영상 만들기
+- [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills) · Three.js 3D 웹 스킬 13개
+- [figma/mcp-server-guide](https://github.com/figma/mcp-server-guide) · Figma 공식 스킬
+- 정리한 문서: `docs/design-skills.md`
+
 ## 이 워크숍
 
 - 스타터 키트: https://github.com/what-axis/harness-workshop-kit

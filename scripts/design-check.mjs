@@ -16,7 +16,8 @@ if (!fs.existsSync(target)) {
   console.log(`[안내] ${target} 파일이 없습니다.`);
   process.exit(1);
 }
-const text = fs.readFileSync(target, 'utf8');
+// 윈도우식 줄바꿈(CRLF) 파일도 같은 결과가 나오게 줄바꿈을 먼저 맞춥니다
+const text = fs.readFileSync(target, 'utf8').replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
 
 // ---- 문서를 머리말(YAML)과 제목별 구역으로 나누기 ----
 let front = '';
@@ -130,7 +131,9 @@ const vague = [];
     if (h) { title = h[1].trim(); return; }
     if (/브랜드|Overview|원칙|읽는 법/i.test(title)) return;      // 분위기를 말하는 구역은 봐줍니다
     if (/대신|말고|금지|쓰지 않|Don'?t|Never|Avoid/i.test(line)) return; // 나쁜 예로 든 말은 봐줍니다
-    const m = line.match(VAGUE);
+    // 토큰 이름(ink-subtle, {colors.clean})과 코드 표기 안의 단어는 형용사가 아니라서 뺍니다
+    const prose = line.replace(/`[^`]*`/g, ' ').replace(/\{[^}]*\}/g, ' ').replace(/[A-Za-z0-9]+(?:[-_.][A-Za-z0-9]+)+/g, ' ');
+    const m = prose.match(VAGUE);
     if (m && line.trim().length > 8) vague.push({ no: i + 1, word: m[0], line: line.trim().slice(0, 90), title });
   });
 }

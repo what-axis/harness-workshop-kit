@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>겨울 세일 인트로 · 타임라인 예시</title>
+<style>
+:root{--line:#E3E6EC;--navy:#0F1E3D;--red:#D9453A}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#ECEAE4;font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+.wrap{width:min(720px,92vw)}
+.mxbtn{font:inherit;font-size:14px;padding:8px 14px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+
+.mg{position:relative;width:100%;aspect-ratio:16/9;background:#F7F5F0;overflow:hidden;border:1px solid #D9D5CA;color:#141414;letter-spacing:-.02em}
+.mg *{box-sizing:border-box}
+.mg-bar{position:absolute;left:0;top:0;bottom:0;width:38%;background:#C8F03A;transform-origin:0 50%}
+.mg-prod{position:absolute;left:19%;top:50%;margin:-72px 0 0 -40px}
+.mg-brand{position:absolute;left:44%;top:13%;font-size:13px;font-weight:700;letter-spacing:.16em;display:flex}
+.mg-brand span{display:inline-block;white-space:pre}
+.mg-h{position:absolute;left:44%;top:25%;font-size:44px;font-weight:700;line-height:1.12}
+.mg-h div{overflow:hidden}.mg-h span{display:block}
+.mg-num{position:absolute;left:44%;top:61%;font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:8px}
+.mg-num small{font-size:14px;font-weight:500;color:#6B665E}
+.mg-cta{position:absolute;left:44%;top:79%;background:#141414;color:#fff;font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;display:flex;gap:8px;align-items:center}
+.mgt{position:relative;height:30px;margin-top:10px;display:flex;border:1px solid var(--line);font-size:12px;color:#4B556B}
+.mgt>div{display:flex;align-items:center;padding-left:8px;border-right:1px solid var(--line);white-space:nowrap;overflow:hidden}
+.mgt>div:last-of-type{border-right:0}
+.mgt .ph{position:absolute;top:-4px;bottom:-4px;left:0;width:2px;background:var(--red);padding:0;border:0}
+.mgc{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13.5px}
+.mgc input[type=range]{flex:1;accent-color:#0F1E3D}
+.mgc output{font-variant-numeric:tabular-nums;min-width:86px;text-align:right;color:#4B556B}
+</style>
+</head>
+<body>
+<div class="wrap" data-mgroot="1">
+<div class="mg"><div class="mg-bar"></div><div class="mg-prod"><svg width="80" height="144" viewBox="0 0 54 96" aria-hidden="true"><rect x="9" y="2" width="36" height="10" rx="4" fill="#141414"/><path d="M11 14h32l-4 76a6 6 0 0 1-6 5H21a6 6 0 0 1-6-5z" fill="#9DB1A0"/><rect x="14" y="34" width="26" height="20" rx="3" fill="#F7F5F0" opacity=".85"/></svg></div><div class="mg-brand"><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span><span> </span><span>M</span><span>O</span><span>N</span><span>O</span></div><div class="mg-h"><div><span>겨울 정리</span></div><div><span>세일</span></div></div><div class="mg-num"><span class="mg-n">30</span><span>%</span><small>전 품목 · 12월 한 주</small></div><div class="mg-cta"><span>지금 보기</span><span class="mg-arr">→</span></div></div><div class="mgt"><div style="flex:60">브랜드</div><div style="flex:80">제목</div><div style="flex:80">숫자</div><div style="flex:105">버튼</div><div style="flex:140">머무름</div><div class="ph"></div></div><div class="mgc"><button type="button" class="mxbtn" data-mg="toggle">멈춤</button><button type="button" class="mxbtn" data-mg="restart">처음부터</button><input type="range" min="0" max="1000" value="0" aria-label="타임라인 위치" data-mg="scrub"><output data-mg="time">0.00s</output></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap)return;
+  [].forEach.call(document.querySelectorAll('[data-mgroot]'),function(root){
+    var q=function(s){return root.querySelector(s);}, qa=function(s){return root.querySelectorAll(s);};
+    var tl, num={v:0}, track=q('.mgt'), ph=q('.ph'), out=q('[data-mg="time"]'), range=q('[data-mg="scrub"]'), tog=q('[data-mg="toggle"]');
+    function ui(){var p=tl.progress();ph.style.transform='translateX('+(p*(track.clientWidth-2))+'px)';out.textContent=tl.time().toFixed(2)+'s / '+tl.duration().toFixed(1)+'s';if(document.activeElement!==range)range.value=Math.round(p*1000);}
+    var mm=gsap.matchMedia();
+    mm.add({full:'(prefers-reduced-motion: no-preference)',reduce:'(prefers-reduced-motion: reduce)'},function(ctx){
+      var reduce=ctx.conditions.reduce;
+      tl=gsap.timeline({paused:true,repeat:-1,repeatDelay:.4,defaults:{duration:.6,ease:'power3.out'},onUpdate:ui});
+      tl.addLabel('brand',0)
+        .from(q('.mg-bar'),{scaleX:reduce?1:0,autoAlpha:reduce?0:1,duration:.7,ease:'power4.inOut'},'brand')
+        .from(q('.mg-prod'),{autoAlpha:0,y:reduce?0:24,scale:reduce?1:.94},'brand+=.25')
+        .from(qa('.mg-brand span'),{autoAlpha:0,y:reduce?0:10,stagger:.035,duration:.4},'brand+=.2')
+        .addLabel('title',.6)
+        .from(qa('.mg-h span'),{yPercent:reduce?0:105,autoAlpha:reduce?0:1,stagger:.12,duration:.7},'title')
+        .addLabel('number',1.4)
+        .from(q('.mg-num'),{autoAlpha:0,y:reduce?0:12,duration:.4},'number')
+        .fromTo(num,{v:0},{v:30,duration:.8,ease:'power2.out',snap:{v:1},onUpdate:function(){q('.mg-n').textContent=num.v;}},'number')
+        .addLabel('cta',2.2)
+        .from(q('.mg-cta'),{autoAlpha:0,x:reduce?0:-16,duration:.45},'cta')
+        .to(q('.mg-arr'),{x:reduce?0:5,duration:.3,ease:'power1.inOut',yoyo:true,repeat:1},'cta+=.45')
+        .to({}, {duration:1.4});
+      return function(){tl.kill();};
+    });
+    function playing(on){if(on)tl.play();else tl.pause();tog.textContent=on?'멈춤':'재생';}
+    tog.addEventListener('click',function(){playing(tl.paused());tog.blur();});
+    q('[data-mg="restart"]').addEventListener('click',function(e){tl.restart();tog.textContent='멈춤';e.currentTarget.blur();});
+    range.addEventListener('input',function(){playing(false);tl.progress(range.value/1000);});
+    range.addEventListener('change',function(){range.blur();});
+    var sec=root.closest('.slide');
+    if(sec){new MutationObserver(function(){if(sec.classList.contains('active')){tl.restart();tog.textContent='멈춤';}else tl.pause();}).observe(sec,{attributes:true,attributeFilter:['class']});tl.progress(.999).pause();}
+    else{playing(true);}
+    (window.deckPrint=window.deckPrint||[]).push(function(){tl.pause();tl.progress(.999);});
+  });
+})();
+</script>
+</body>
+</html>
